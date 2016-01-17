@@ -1,10 +1,7 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -22,10 +19,35 @@ public class Main extends Application{
         launch(args);
     }
 
+    //Handle checkbox options
+    private void handleOptions(CheckBox box1, CheckBox box2){
+        String message = "Users order:\n";
+
+        if(box1.isSelected()){
+            message+="bacon";
+        }
+        if(box2.isSelected()){
+            message+="Tuna";
+        }
+
+        System.out.println(message);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("JavaFx");
+
+        //checkboxes
+
+        CheckBox box1 = new CheckBox("Bacon");
+        CheckBox box2 = new CheckBox("Tuna");
+        box2.setSelected(true);
+
+        Button button2 = new Button("Order Now!");
+        button2.setOnAction(e->handleOptions(box1,box2));
+
+
 
         TextField nameInput = new TextField();
         button = new Button("Click Me");
@@ -36,7 +58,7 @@ public class Main extends Application{
         //layout
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20,20,20,20));
-        layout.getChildren().addAll(nameInput,button);
+        layout.getChildren().addAll(nameInput,button,box1,box2,button2);
 
         scene = new Scene(layout,300,250);
         window.setScene(scene);
