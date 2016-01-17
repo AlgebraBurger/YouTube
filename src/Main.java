@@ -1,11 +1,12 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -24,8 +25,42 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
-        window.setTitle("Title here");
+        window.setTitle("JavaFx");
 
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10,10,10,10));
+        grid.setVgap(8);
+        grid.setHgap(10);
+
+        //new label
+        Label nameLabel = new Label("Username:");
+        GridPane.setConstraints(nameLabel, 0, 0);
+
+        //Name input
+        TextField nameInput = new TextField("Bucky");
+        GridPane.setConstraints(nameInput,1,0);
+
+        //new label
+        Label passLabel = new Label("Password:");
+        GridPane.setConstraints(passLabel, 0, 1);
+
+        //Password input
+        TextField passInput = new TextField();
+        passInput.setPromptText("password");
+        GridPane.setConstraints(passInput,1,1);
+
+
+        Button loginButton = new Button("Log In");
+        GridPane.setConstraints(loginButton,1,2);
+
+        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton);
+
+        Scene scene = new Scene(grid,300,200);
+        window.setScene(scene);
+        window.show();
+
+
+        /* -- embedding windows
         HBox topMenu = new HBox();
 
         Button buttonA = new Button("File");
@@ -46,7 +81,7 @@ public class Main extends Application{
         Scene scene = new Scene(borderPane,300,250);
         window.setScene(scene);
         window.show();
-
+        */
         /*
         Label label1 = new Label("Welcome to the first scene!");
         Button button1 = new Button("Go to scene 2");
