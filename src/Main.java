@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
     Stage window;
-    Scene scene1, scene2;
-
+    Scene scene, scene1, scene2;
+    Button button;
 
     public static  void  main(String[] args){
         launch(args);
@@ -27,6 +27,22 @@ public class Main extends Application{
         window = primaryStage;
         window.setTitle("JavaFx");
 
+        TextField nameInput = new TextField();
+        button = new Button("Click Me");
+        button.setOnAction(e -> {
+            isInt(nameInput, nameInput.getText());
+        });
+
+        //layout
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.getChildren().addAll(nameInput,button);
+
+        scene = new Scene(layout,300,250);
+        window.setScene(scene);
+        window.show();
+
+        /*
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10,10,10,10));
         grid.setVgap(8);
@@ -58,7 +74,7 @@ public class Main extends Application{
         Scene scene = new Scene(grid,300,200);
         window.setScene(scene);
         window.show();
-
+        */
 
         /* -- embedding windows
         HBox topMenu = new HBox();
@@ -132,6 +148,17 @@ public class Main extends Application{
         window.show();
         */
 
+    }
+
+    private boolean isInt(TextField input, String message){
+        try{
+            int age = Integer.parseInt(input.getText());
+            System.out.println("User is: " + age);
+            return  true;
+        }catch (NumberFormatException e){
+            System.out.println("Error: " + message + " is not a number");
+            return  false;
+        }
     }
 
     private void closeProgram(){
